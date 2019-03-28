@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+<header class="jumbotron">
+    <h1>Party Boat packages</h1>
+</header>
+
+<a href="/boats/new">Add new boat!</a>
+
+<% boats.forEach(function(boat){ %>
+    <div>
+        <h4><%= boat.name %></h4>
+        <img src="<%= boat.image %>" style="width: 50%">
+    </div>
+<% }); %>
+
+<% include partials/footer %>
