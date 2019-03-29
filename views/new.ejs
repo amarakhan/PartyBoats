@@ -1,13 +1,18 @@
 <% include partials/header %>
 
-<h1>create new boat party</h1>
 
-<form action="/boats" method="POST">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="image" placeholder="image url">
-    <button>Submit!</button>
-</form>
+<div class="container new-boat-container">
 
-<a href="/boats">GO BACK</a>
+    <div class="new-party-h .border-gradient">
+        <h1>Host Boat Party</h1>
+    </div>
+    <div style="width:40%">
+        <form action="/boats" method="POST">
+            <input class="form-control" type="text" name="name" placeholder="name">
+            <input class="form-control" type="text" name="image" placeholder="image url">
+            <button class="btn btn-lg" id="new-boat-btn">Let's PARTAY</button>
+        </form>
+    </div>
+    <a href="/boats">GO BACK</a>
+</div>
 
-<% include partials/footer %>

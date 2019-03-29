@@ -1,16 +1,38 @@
 <% include partials/header %>
 
 <header class="jumbotron">
-    <h1>Party Boat packages</h1>
+    <div class="jumbotron-overlay">
+        <h1>Party Boat Packages</h1>
+        <p>BROWSE OUR PARTY PACKAGES AND EVENTS</p>
+    </div>
 </header>
 
-<a href="/boats/new">Add new boat!</a>
+<div class="container border-gradient">
+    <p>
+        <a class="btn btn-large btn-dark" href="/new">HOST BOAT PARTY </a>
+    </p>
+    <hr>
+    <h2>Party Boat Rentals</h2>
+    <hr>
 
-<% boats.forEach(function(boat){ %>
-    <div>
-        <h4><%= boat.name %></h4>
-        <img src="<%= boat.image %>" style="width: 50%">
+    <div class="row">
+        <% boats.forEach(function(boat){ %>
+            <div class="col-md-6 col-sm-12">
+                <h4 class="boat-title"><%= boat.name %></h4>
+                <img src="<%= boat.image %>" class="boat-images">
+            </div>
+        <% }); %>
     </div>
-<% }); %>
 
-<% include partials/footer %>
+    <hr>
+    <h2>Hosted Boat Events</h2>
+    <hr>
+    <div class="row">
+        <% newboats.forEach(function(newboat){ %>
+            <div class="col-md-6 col-sm-12">
+                <h4 class="boat-title"><%= newboat.name %></h4>
+                <img src="<%= newboat.image %>" class="boat-images">
+            </div>
+        <% }); %>
+    </div>
+</div>
