@@ -2,12 +2,13 @@
 <header class="jumbotron" id="show-jumbo">
     
     <div class="jumbotron-overlay" id="show-overlay">
-        <h1 id="show-jumbo-title"><%=boat.name%></h1>
+        <h1 id="show-jumbo-title"><%= boat.name %></h1>
     </div>
 </header>
 
 
-<div class="container border-gradient">
-        <p><%=boat.name%></p>
-        <img src="<%=boat.image%>">
+<div class="container border-gradient boat-container">
+        <p>Boat: <%=boat.name%></p>
+        <img src="<%=boat.image%>" class="boat-info-img">
+        <p><%=boat.details%></p>
 </div>
