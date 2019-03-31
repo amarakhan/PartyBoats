@@ -1,8 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const app = express();
 const mongoose = require("mongoose");
+const Boats = require("./models/boats");
+const newBoats = require("./models/newBoats");
+const seedDB = require("./seeds");
+
+const app = express();
 const port = process.env.PORT || 3000;
+
+seedDB();
 
 mongoose.connect("mongodb://localhost/partyboatdb");
 
@@ -11,13 +17,7 @@ app.use(express.static("public/images"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-var boatSchema = new mongoose.Schema({
-    name: String,
-    image: String
-});
 
-var Boats = mongoose.model("Boats", boatSchema);
-var newBoats = mongoose.model("newBoats", boatSchema);
 // Boats.create({
     // name: "Sea Imp",
     // image: "/images/seaimp.jpg"
@@ -36,13 +36,6 @@ var newBoats = mongoose.model("newBoats", boatSchema);
 //     }
 // });
 
-
-// var boats = [
-//     {name: "Sea Imp", image: "/images/seaimp.jpg"},   
-//     {name: "Taxi boat", image: "/images/taxi.jpg"},
-//     {name: "La Suisse", image: "/images/suisse.jpg"},
-//     {name: "Color Line", image: "/images/colorline.jpeg"}
-// ]
 
 app.get("/",function(req,res){
     //res.render("home");
@@ -69,7 +62,8 @@ app.get("/boats", function(req, res){
 app.post("/boats", function(req,res){
     var name = req.body.name;
     var image = req.body.image;
-    var newBoat = {name: name, image: image}
+    var details = req.body.details;
+    var newBoat = {name: name, image: image, details:details}
     // boats.push(newBoat);
     newBoats.create(newBoat, function(err, newlyCreated){
         if(err){
@@ -82,6 +76,27 @@ app.post("/boats", function(req,res){
 
 app.get("/new", function(req,res){
     res.render("new.ejs");
+});
+
+app.get("/boats/:id", function(req,res){
+    Boats.findById(req.params.id, function(err, foundBoat){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("showboats", {boat: foundBoat});
+        }
+    });
+});
+
+
+app.get("/hostedboats/:id", function(req,res){
+    newBoats.findById(req.params.id, function(err, foundBoat){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("showhostedboats", {boat: foundBoat});
+        }
+    });
 });
 
 

@@ -146,6 +146,31 @@ hr{
     width: 100% ;
 }
 
+#details-button{
+    color: white; 
+    margin-top: 2px
+}
+
+/* styling for showboats */
+#show-jubmo{
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+}
+#show-overlay{
+    padding: 1.8rem;
+    vertical-align: middle;
+}
+
+#show-jumbo-title{
+    margin: 0 auto;
+    padding: 2px;
+
+}
+
 
 /* 992 */
 @media (min-width: 768px){

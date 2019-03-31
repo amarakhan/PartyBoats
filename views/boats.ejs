@@ -20,7 +20,12 @@
             <div class="col-md-6 col-sm-12">
                 <h4 class="boat-title"><%= boat.name %></h4>
                 <img src="<%= boat.image %>" class="boat-images">
+                <br>
+                <p>
+                    <a href="/boats/<%= boat._id %>" class="btn" id="details-button">Details</a>
+                </p>
             </div>
+   
         <% }); %>
     </div>
 
@@ -32,6 +37,11 @@
             <div class="col-md-6 col-sm-12">
                 <h4 class="boat-title"><%= newboat.name %></h4>
                 <img src="<%= newboat.image %>" class="boat-images">
+                <br>
+                <p>
+                    <a href="/hostedboats/<%= newboat._id %>" class="btn" id="details-button">Details</a>
+                </p>
+            
             </div>
         <% }); %>
     </div>
