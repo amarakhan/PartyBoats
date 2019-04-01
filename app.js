@@ -99,7 +99,7 @@ app.get("/hostedboats/:id", function(req,res){
     });
 });
 
-app.get("/boats/:id/comments/new", function(req,res){
+app.get("/boats/:id/comments/new", loggedIn, function(req,res){
     Boats.findById(req.params.id, function(err, boat){
         if(err){
             console.log(err);
@@ -109,7 +109,7 @@ app.get("/boats/:id/comments/new", function(req,res){
     });
 });
 
-app.get("/hostedboats/:id/comments/new", function(req,res){
+app.get("/hostedboats/:id/comments/new",loggedIn, function(req,res){
     newBoats.findById(req.params.id, function(err,boat){
         if(err){
             console.log(err);
@@ -119,7 +119,7 @@ app.get("/hostedboats/:id/comments/new", function(req,res){
     });
 });
 
-app.post("/boats/:id/comments", function(req,res){
+app.post("/boats/:id/comments", loggedIn, function(req,res){
     Boats.findById(req.params.id, function(err,boat){
         if(err){
             console.log(err);
@@ -138,8 +138,8 @@ app.post("/boats/:id/comments", function(req,res){
     });
 });
 
-app.post("/hostedboats/:id/comments", function(req,res){
-    Boats.findById(req.params.id, function(err,boat){
+app.post("/hostedboats/:id/comments", loggedIn, function(req,res){
+    newBoats.findById(req.params.id, function(err,boat){
         if(err){
             console.log(err);
             res.redirect("/boats");
@@ -157,5 +157,45 @@ app.post("/hostedboats/:id/comments", function(req,res){
     });
 });
 
+app.get("/register", function(req,res){
+    res.render("register");
+});
+
+app.post("/register", function(req,res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err,user){
+        if(err){
+            console.log(err);
+            return res.render("register");
+        }
+        passport.authenticate("local")(req,res,function(){
+            res.redirect("boats");
+        });
+    });
+});
+
+app.get("/login", function(req,res){
+    res.render("login");
+});
+
+app.post("/login", passport.authenticate("local", 
+    {
+        successRedirect: "/campgrounds",
+        failureRedirect: "/login"
+    }), function(req, res){
+        //nothing needed here because of middleware
+});
+
+function loggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
+
+app.get("/logout", function(req,res){
+    req.logout();
+    res.redirect("/");
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

@@ -23,7 +23,6 @@
 .new-boat-container form{
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
     margin-bottom: .5rem;
 }
 
@@ -43,15 +42,15 @@
     color: white;
 }
 
-a#back-btn-style{
+a.back-btn-style{
     text-decoration: none;
     color: black;
     font-family: 'Lato', sans-serif;
     letter-spacing: .1rem;
 }
 
-#back-btn-style:hover{
-    color: rgb(123, 120, 120);
+a.back-btn-style:hover{
+    color: blue;
 }
 
 .add-comment-btn{
@@ -59,5 +58,5 @@ a#back-btn-style{
 }
 
 .add-comment-btn:hover{
-    color: rgb(199, 115, 115);
+    color: white;
 }

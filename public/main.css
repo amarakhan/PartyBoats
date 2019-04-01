@@ -12,10 +12,9 @@
     padding-right: 10px;
 }
 
-.fa-water{
+i.fas.fa-water{
     font-size: 1.5rem;
-    /* color: #10777e; */
-    color: rgba(0, 0, 0, 0.411);
+    color: black;
 }
 
 .home-body{

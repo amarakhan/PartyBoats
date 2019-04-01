@@ -1,0 +1,19 @@
+<% include partials/header %>
+
+
+<div class="container new-boat-container border-gradient">
+
+    <div class="new-party-h">
+        <h1>Sign Up</h1>
+    </div>
+    <div>
+        <form action="/register" method="POST">
+            <input class="form-control" type="text" name="username" placeholder="username">
+            <input class="form-control" type="text" name="password" placeholder="password">           
+            <button class="btn btn-lg" id="new-boat-btn">Sign Up</button>
+        </form>
+    </div>
+    <a href="/" class="back-btn-style">GO HOME</a>
+</div>
+
+<% include partials/footer %>
