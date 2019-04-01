@@ -11,4 +11,18 @@
         <p>Event: <%=boat.name%></p>
         <img src="<%=boat.image%>" class="boat-info-img">
         <p><%=boat.details%></p>
+        <p>
+            <a href="/hostedboats/<%= boat._id%>/comments/new">Add Comment</a>
+            </p>
+            <hr>
+            <p>COMMENTS</p>
+            <hr>
+            <%boat.comments.forEach(function(comment){ %>
+                <p>
+                    <%= comment.author%> : <%=comment.text%>
+                </p>
+            <% }) %>
 </div>
+
+
+<% include partials/footer %>

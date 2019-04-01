@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const Boats = require("./models/boats");
 const newBoats = require("./models/newBoats");
 const seedDB = require("./seeds");
+const Comment = require("./models/comment");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -17,24 +18,6 @@ app.use(express.static("public/images"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-
-// Boats.create({
-    // name: "Sea Imp",
-    // image: "/images/seaimp.jpg"
-    // name: "La Suisse", 
-    // image: "/images/suisse.jpg"
-    // name: "Color Line", 
-    // image: "/images/colorline.jpeg"
-    // name: "Taxi boat", 
-    // image: "/images/taxi.jpg"
-// }, function(err, boat){
-//     if(err){
-//         console.log(err);
-//     }else{
-//         console.log("new boat added: ");
-//         console.log(boat);
-//     }
-// });
 
 
 app.get("/",function(req,res){
@@ -79,10 +62,11 @@ app.get("/new", function(req,res){
 });
 
 app.get("/boats/:id", function(req,res){
-    Boats.findById(req.params.id, function(err, foundBoat){
+    Boats.findById(req.params.id).populate("comments").exec(function(err, foundBoat){
         if(err){
             console.log(err);
         }else{
+            console.log(foundBoat);
             res.render("showboats", {boat: foundBoat});
         }
     });
@@ -90,14 +74,55 @@ app.get("/boats/:id", function(req,res){
 
 
 app.get("/hostedboats/:id", function(req,res){
-    newBoats.findById(req.params.id, function(err, foundBoat){
+    newBoats.findById(req.params.id).populate("comments").exec(function(err, foundBoat){
         if(err){
             console.log(err);
         }else{
+            console.log(foundBoat);
             res.render("showhostedboats", {boat: foundBoat});
         }
     });
 });
 
+app.get("/boats/:id/comments/new", function(req,res){
+    Boats.findById(req.params.id, function(err, boat){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("comments/new",{boat:boat});
+        }
+    });
+});
+
+app.get("/hostedboats/:id/comments/new", function(req,res){
+    newBoats.findById(req.params.id, function(err,boat){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("comments/eventnew",{boat:boat});
+        }
+    });
+});
+
+app.post("/boats/:id/comments", function(req,res){
+    Boats.findById(req.params.id, function(err,boat){
+        if(err){
+            console.log(err);
+            res.redirect("/boats");
+        }else{
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                }else{
+                    boat.comments.push(comment);
+                    boat.save();
+                    res.redirect("/boats/"+boat._id);
+                }
+            });
+        }
+    });
+});
+
+app.post("/hostedboats/:id/comments");
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

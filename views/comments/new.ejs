@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+
+
+<div class="container new-boat-container">
+
+    <div class="new-party-h .border-gradient">
+        <h1>Add new comment for <%= boat.name%></h1>
+    </div>
+    <div>
+        <form action="/boats/<%= boat._id%>/comments" method="POST">
+            <input class="form-control" type="text" name="comment[text]" placeholder="text">
+            <input class="form-control" type="text" name="comment[author]" placeholder="author">
+            <button class="btn btn-lg" id="new-boat-btn">Submit</button>
+        </form>
+    </div>
+    <a href="/boats" id="back-btn-style">GO BACK</a>
+</div>
+

@@ -16,6 +16,17 @@
     color: white;
 }
 
+.new-boat-container{
+    text-align: center;
+}
+
+.new-boat-container form{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    margin-bottom: .5rem;
+}
+
 .new-boat-container form input{
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -30,5 +41,16 @@
     font-family: 'Playfair Display', serif; 
     letter-spacing: .1rem;
     color: white;
+}
+
+a#back-btn-style{
+    text-decoration: none;
+    color: black;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: .1rem;
+}
+
+#back-btn-style:hover{
+    color: rgb(28, 28, 135);
 }
 

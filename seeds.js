@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Boats = require("./models/boats");
 var newBoats = require("./models/newBoats");
+var Comment = require("./models/comment");
 
 var boatData = [
     { 
@@ -46,22 +47,47 @@ function seedDB(){
                 if(err){
                     console.log(err);
                 }else{
-                    console.log("removed all boats");
                     boatData.forEach(function(seed){
-                        Boats.create(seed, function(err,data){
+                        Boats.create(seed, function(err,boat){
                             if(err){
-                                console.log(err)
+                                console.log(err);
                             }else{
                                 console.log("added a boat!")
+                                Comment.create(
+                                    {
+                                        text: "Was a great Vessel.. will comandeer again!",
+                                        author: "Captain Arrr"
+                                    },function(err, comment){
+                                        if(err){
+                                            console.log(err);
+                                        } else {
+                                            boat.comments.push(comment);
+                                            boat.save();
+                                            console.log("Created comment");
+                                        }
+                                });
                             }
                         });
                     });
                     newBoatData.forEach(function(seed){
-                        newBoats.create(seed, function(err,data){
+                        newBoats.create(seed, function(err,boat){
                             if(err){
-                                console.log(err)
+                                console.log(err);
                             }else{
                                 console.log("added a boat!")
+                                Comment.create(
+                                    {
+                                        text: "Was a great Vessel.. will comandeer again!",
+                                        author: "Captain Arrr"
+                                    },function(err, comment){
+                                        if(err){
+                                            console.log(err);
+                                        } else {
+                                            boat.comments.push(comment);
+                                            boat.save();
+                                            console.log("Created comment");
+                                        }
+                                });
                             }
                         });
                     });
