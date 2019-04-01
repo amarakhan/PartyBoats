@@ -7,7 +7,7 @@
         <h1>Add new comment for "<%= boat.name%>" event</h1>
     </div>
     <div>
-        <form action="/boats/<%= boat._id%>/comments" method="POST">
+        <form action="/hostedboats/<%= boat._id%>/comments" method="POST">
             <input class="form-control" type="text" name="comment[text]" placeholder="text">
             <input class="form-control" type="text" name="comment[author]" placeholder="author">
             <button class="btn btn-lg" id="new-boat-btn">Submit</button>

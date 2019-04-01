@@ -6,8 +6,7 @@
     </div>
 </header>
 
-
-<div class="container border-gradient boat-container">
+<!-- <div class="container border-gradient boat-container">
         <p>Boat: <%=boat.name%></p>
         <img src="<%=boat.image%>" class="boat-info-img">
         <p><%=boat.details%></p>
@@ -25,7 +24,31 @@
             </p>
         <% }) %>
 
-</div>
+</div> -->
 
+<div class="container border-gradient boat-container">
+        <p>Boat: <%=boat.name%></p>
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="<%=boat.image%>" class="boat-info-img">
+                <p><%=boat.details%></p>
+            </div>
+            <div class="col-lg-6">
+                <hr>
+                <p>COMMENTS</p>
+                <hr>
+                <div class="comment-div">
+                    <%boat.comments.forEach(function(comment){ %>
+                        <p>
+                            <span class="comment-author"><%= comment.author%></span> - <%=comment.text%>
+                        </p>
+                    <% }) %>
+                </div>
+                <p>
+                    <a class="btn add-comment-btn" href="/boats/<%= boat._id%>/comments/new">Add Comment</a>
+                </p>
+            </div>
+        </div>
+    </div>
 
 <% include partials/footer %>

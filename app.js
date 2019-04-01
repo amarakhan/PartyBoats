@@ -154,7 +154,7 @@ app.post("/hostedboats/:id/comments", loggedIn, function(req,res){
                 }else{
                     boat.comments.push(comment);
                     boat.save();
-                    res.redirect("/boats/"+boat._id);
+                    res.redirect("/hostedboats/"+boat._id);
                 }
             });
         }
@@ -200,6 +200,11 @@ function loggedIn(req,res,next){
 app.get("/logout", function(req,res){
     req.logout();
     res.redirect("/");
+});
+
+app.get("/profile", function(req,res){
+    var userprofile = req.user;
+    res.render("userprofile", {user: userprofile});
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
