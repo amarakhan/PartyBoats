@@ -1,10 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const localStrategy = require("passport-local");
+
 const Boats = require("./models/boats");
 const newBoats = require("./models/newBoats");
-const seedDB = require("./seeds");
 const Comment = require("./models/comment");
+const User = require("./models/user");
+
+const seedDB = require("./seeds");
 
 const app = express();
 const port = process.env.PORT || 3000;

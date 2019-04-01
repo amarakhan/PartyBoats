@@ -12,16 +12,19 @@
         <img src="<%=boat.image%>" class="boat-info-img">
         <p><%=boat.details%></p>
         <p>
-            <a href="/boats/<%= boat._id%>/comments/new">Add Comment</a>
+            <a class="btn add-comment-btn" href="/boats/<%= boat._id%>/comments/new">Add Comment</a>
         </p>
+  
         <hr>
         <p>COMMENTS</p>
         <hr>
+        
         <%boat.comments.forEach(function(comment){ %>
             <p>
                 <%= comment.author%> : <%=comment.text%>
             </p>
         <% }) %>
+
 </div>
 
 

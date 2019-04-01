@@ -51,6 +51,13 @@ a#back-btn-style{
 }
 
 #back-btn-style:hover{
-    color: rgb(28, 28, 135);
+    color: rgb(123, 120, 120);
 }
 
+.add-comment-btn{
+    color: white;
+}
+
+.add-comment-btn:hover{
+    color: rgb(199, 115, 115);
+}
