@@ -14,7 +14,17 @@ const seedDB = require("./seeds");
 const app = express();
 const port = process.env.PORT || 3000;
 
-seedDB();
+// configuring passport
+app.use(require("express-session")({
+    secret: "What did the ocean say to the pirate? Nothing, it just waved.",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 mongoose.connect("mongodb://localhost/partyboatdb");
 
@@ -23,7 +33,7 @@ app.use(express.static("public/images"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-
+seedDB();
 
 app.get("/",function(req,res){
     //res.render("home");
@@ -128,6 +138,24 @@ app.post("/boats/:id/comments", function(req,res){
     });
 });
 
-app.post("/hostedboats/:id/comments");
+app.post("/hostedboats/:id/comments", function(req,res){
+    Boats.findById(req.params.id, function(err,boat){
+        if(err){
+            console.log(err);
+            res.redirect("/boats");
+        }else{
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                }else{
+                    boat.comments.push(comment);
+                    boat.save();
+                    res.redirect("/boats/"+boat._id);
+                }
+            });
+        }
+    });
+});
+
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
