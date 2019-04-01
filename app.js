@@ -32,6 +32,10 @@ app.use(express.static("public"));
 app.use(express.static("public/images"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(function(req,res,next){
+    res.locals.user = req.user;
+    next();
+});
 
 seedDB();
 
@@ -180,7 +184,7 @@ app.get("/login", function(req,res){
 
 app.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/campgrounds",
+        successRedirect: "/",
         failureRedirect: "/login"
     }), function(req, res){
         //nothing needed here because of middleware
