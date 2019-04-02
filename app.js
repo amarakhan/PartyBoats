@@ -26,7 +26,13 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-mongoose.connect("mongodb://localhost/partyboatdb");
+// mongoose.connect("mongodb://localhost/partyboatdb");
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://user:merpmerp123@ds031597.mlab.com:31597/heroku_rkt0xqdq",
+    {
+        useMongoClient: true
+    }
+);
 
 app.use(express.static("public"));
 app.use(express.static("public/images"));
