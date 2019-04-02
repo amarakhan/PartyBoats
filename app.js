@@ -203,7 +203,7 @@ app.get("/logout", function(req,res){
 });
 
 app.get("/profile", function(req,res){
-    var userprofile = req.user;
+    const userprofile = req.user;
     res.render("userprofile", {user: userprofile});
 });
 

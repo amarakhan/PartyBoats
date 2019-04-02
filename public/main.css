@@ -14,7 +14,7 @@
 
 i.fas.fa-water{
     font-size: 1.5rem;
-    color: black;
+    /* color: black; */
 }
 /* END navigation styling */
 
@@ -126,7 +126,11 @@ i.fas.fa-water{
 .border-gradient {
     border-style:solid;
     border-image:linear-gradient(rgb(87, 83, 83), transparent) 1;
-    border-bottom:0;    
+    border-bottom:0;
+}
+
+.container-max{
+    max-width: 680px;    
 }
 
 .boat-title{

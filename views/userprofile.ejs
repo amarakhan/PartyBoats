@@ -1,1 +1,13 @@
-<p>profile for <%=user.username%></p>
+<% include partials/header %>
+
+<div class="container new-boat-container border-gradient container-max">
+
+    <div class="new-party-h">
+        <h1>Hi, <%=user.username%></h1>
+    </div>
+    <div>
+        <p>You have no bookings yet.</p>
+    </div>
+</div>
+
+<% include partials/footer %>

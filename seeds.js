@@ -52,7 +52,7 @@ function seedDB(){
                             if(err){
                                 console.log(err);
                             }else{
-                                console.log("added a boat!")
+                                // console.log("added a boat!")
                                 Comment.create(
                                     {
                                         text: "Was a great Vessel.. will comandeer again!",
@@ -63,7 +63,7 @@ function seedDB(){
                                         } else {
                                             boat.comments.push(comment);
                                             boat.save();
-                                            console.log("Created comment");
+                                            // console.log("Created comment");
                                         }
                                 });
                             }
@@ -74,7 +74,7 @@ function seedDB(){
                             if(err){
                                 console.log(err);
                             }else{
-                                console.log("added a boat!")
+                                // console.log("added a boat!")
                                 Comment.create(
                                     {
                                         text: "Was a great Vessel.. will comandeer again!",
@@ -85,7 +85,7 @@ function seedDB(){
                                         } else {
                                             boat.comments.push(comment);
                                             boat.save();
-                                            console.log("Created comment");
+                                            // console.log("Created comment");
                                         }
                                 });
                             }
