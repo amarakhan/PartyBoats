@@ -29,18 +29,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // mongoose.connect("mongodb://localhost/partyboatdb");
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://<dbuser>:<dbpassword>@ds031597.mlab.com:31597/heroku_rkt0xqdq",
-    {
-        "_id": "heroku_rkt0xqdq.user",
-        "user": "user",
-        "db": "heroku_rkt0xqdq",
-        "roles": [
-            {
-                "role": "dbOwner",
-                "db": "heroku_rkt0xqdq"
-            }
-        ]
-    }
+    process.env.MONGODB_URI || 'mongodb://localhost/3000'
 );
 
 app.use(express.static("public"));
