@@ -14,6 +14,7 @@ const seedDB = require("./seeds");
 const app = express();
 const port = process.env.PORT || 3000;
 
+
 // configuring passport
 app.use(require("express-session")({
     secret: "What did the ocean say to the pirate? Nothing, it just waved.",
@@ -28,16 +29,24 @@ passport.deserializeUser(User.deserializeUser());
 
 // mongoose.connect("mongodb://localhost/partyboatdb");
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://user:merpmerp123@ds031597.mlab.com:31597/heroku_rkt0xqdq",
+    process.env.MONGODB_URI || "mongodb://<dbuser>:<dbpassword>@ds031597.mlab.com:31597/heroku_rkt0xqdq",
     {
-        useMongoClient: true
+        "_id": "heroku_rkt0xqdq.user",
+        "user": "user",
+        "db": "heroku_rkt0xqdq",
+        "roles": [
+            {
+                "role": "dbOwner",
+                "db": "heroku_rkt0xqdq"
+            }
+        ]
     }
 );
 
 app.use(express.static("public"));
 app.use(express.static("public/images"));
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 app.use(function(req,res,next){
     res.locals.user = req.user;
     next();
