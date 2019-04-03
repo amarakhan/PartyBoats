@@ -5,7 +5,7 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 
 const Boats = require("./models/boats");
-const newBoats = require("./models/newBoats");
+const newBoats = require("./models/newboats");
 const Comment = require("./models/comment");
 const User = require("./models/user");
 
@@ -35,7 +35,7 @@ mongoose.connect(
 app.use(express.static("public"));
 app.use(express.static("public/images"));
 app.set("view engine", "ejs");
-app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(function(req,res,next){
     res.locals.user = req.user;
     next();
