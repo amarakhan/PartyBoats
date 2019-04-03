@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Boats = require("./models/boats");
-var newBoats = require("./models/newBoats");
+var newBoats = require("./models/newboats");
 var Comment = require("./models/comment");
 
 var boatData = [
