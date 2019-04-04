@@ -9,8 +9,6 @@ const newBoats = require("./models/newboats");
 const Comment = require("./models/comment");
 const User = require("./models/user");
 
-const seedDB = require("./seeds");
-
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -40,8 +38,6 @@ app.use(function(req,res,next){
     res.locals.user = req.user;
     next();
 });
-
-seedDB();
 
 app.get("/",function(req,res){
     //res.render("home");

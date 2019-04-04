@@ -97,4 +97,4 @@ function seedDB(){
     });
 }
 
-module.exports = seedDB;
+seedDB();
