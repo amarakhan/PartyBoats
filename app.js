@@ -25,7 +25,6 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// mongoose.connect("mongodb://localhost/partyboatdb");
 mongoose.connect(
     process.env.MONGODB_URI || 'mongodb://localhost/3000'
 );
@@ -40,7 +39,6 @@ app.use(function(req,res,next){
 });
 
 app.get("/",function(req,res){
-    //res.render("home");
     res.render("home");
 });
 
@@ -56,7 +54,6 @@ app.get("/boats", function(req, res){
                     res.render("boats", {newboats: allnewboats, boats: allboats});
                 }
             });
-            // res.render("boats", {boats: allboats});
         }
     });
 });
@@ -66,7 +63,6 @@ app.post("/boats", function(req,res){
     var image = req.body.image;
     var details = req.body.details;
     var newBoat = {name: name, image: image, details:details}
-    // boats.push(newBoat);
     newBoats.create(newBoat, function(err, newlyCreated){
         if(err){
             console.log(err);
@@ -187,7 +183,6 @@ app.post("/login", passport.authenticate("local",
         successRedirect: "/",
         failureRedirect: "/login"
     }), function(req, res){
-        //nothing needed here because of middleware
 });
 
 function loggedIn(req,res,next){
